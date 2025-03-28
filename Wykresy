@@ -1,0 +1,59 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+partie = ['PiS', 'KO', 'Trzecia Droga', 'Lewica', 'Konfederacja']
+wyniki = [35.38, 30.70, 14.40, 8.61, 7.16]
+
+plt.figure(figsize=(10, 6))
+plt.bar(partie, wyniki, color=['blue', 'orange', 'green', 'red', 'black'])
+plt.title('Wyniki Wyborów Parlamentarnych w Polsce 2023')
+plt.xlabel('Partie')
+plt.ylabel('Procent Głosów')
+plt.ylim(0, 40)
+plt.show()
+
+x = np.linspace(0, 4 * np.pi, 100)
+y_sin = np.sin(x)
+
+plt.figure(figsize=(10, 6))
+plt.plot(x, y_sin, label='sin(x)')
+plt.title('Wykres funkcji sin(x)')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.grid(True)
+plt.show()
+
+y_cos = np.cos(x)
+
+plt.figure(figsize=(10, 6))
+plt.plot(x, y_cos, label='cos(x)')
+plt.title('Wykres funkcji cos(x)')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.grid(True)
+plt.show()
+
+def mandelbrot(c, max_iter):
+    z = 0
+    for n in range(max_iter):
+        if abs(z) > 2:
+            return n
+        z = z*z + c
+    return max_iter
+
+width, height = 500, 500
+max_iter = 100
+xmin, xmax = -2.5, 1.5
+ymin, ymax = -2, 2
+
+image = np.zeros((height, width))
+for x in range(width):
+    for y in range(height):
+        c = complex(xmin + (xmax - xmin) * x / width, ymin + (ymax - ymin) * y / height)
+        image[y, x] = mandelbrot(c, max_iter)
+
+plt.figure(figsize=(8, 8))
+plt.imshow(image, cmap='hot', extent=(xmin, xmax, ymin, ymax))
+plt.title('Zbiór Mandelbrota')
+plt.colorbar()
+plt.show()
